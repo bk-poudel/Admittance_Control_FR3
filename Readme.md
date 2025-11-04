@@ -1,3 +1,31 @@
+## Exact usage (from the included scripts)
+This repository includes two runnable Python examples:
+- `MujocoSim.py` — provides the `FR3Sim` class which launches a MuJoCo simulation of the FR3 model. The constructor signature is:
+```python
+from MujocoSim import FR3Sim
+# programmatic options
+sim = FR3Sim(interface_type="torque", render=True, dt=0.001, xml_path=None)
+# interface_type: currently only "torque" is supported
+Run the default simulation (launches the viewer):
+```bash
+python MujocoSim.py
+- `admittance.py` — an example admittance controller that uses `FR3Sim` to read state and send joint torques. Run it directly:
+```bash
+python admittance.py
+Notes: these example scripts are simple runners and currently do not implement a full command-line parser. For custom runs, import `FR3Sim` in your own script and pass the desired options programmatically (see example above).
+## Requirements (auto-generated)
+The main Python packages used by the code are listed below. Some components (MuJoCo, ROS 2, Pinocchio) require system-level installation; see notes after the pip packages.
+Pip-installable (add to `requirements.txt`):
+- numpy
+- scipy
+- matplotlib
+- mujoco
+- pinocchio
+System / environment requirements:
+- MuJoCo and its Python bindings (the `mujoco` wheel). Install MuJoCo from https://mujoco.org and follow binding installation instructions for your OS.
+- Pinocchio: often installed via conda-forge (`conda install -c conda-forge pin`) or built from source.
+- ROS 2 and rclpy: if you plan to use the ROS 2 publishers/subscribers in `MujocoSim.py`, install ROS 2 (Humble/Foxy or your distro) and ensure `rclpy` and message packages (`std_msgs`, `sensor_msgs`) are available.
+If you want I can generate a `requirements.txt` with the pip packages above and a short `install-README` with system installation steps for MuJoCo, Pinocchio and ROS 2.
 # Admittance_Control_FR3
 Short, editable README for the Admittance Control project targeting the FR3 platform.
 ## Overview
